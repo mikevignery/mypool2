@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>16K Saltwater Pool Advisor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;600&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Saltwater · 16,000 gallons · SWG</div>
+    <h1>Test it. Type it. Fix it.</h1>
+    <p class="sub">Enter today's readings and get exact doses calculated for your pool's volume — no guessing, no forum digging.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="tests" aria-label="Test results input">
+    <div class="card">
+      <div class="grid">
+        <label class="field">
+          <span class="name">Free Chlorine</span>
+          <span class="range-hint">target 3–5 ppm</span>
+          <input type="number" id="fc" step="0.1" min="0" max="30" inputmode="decimal" placeholder="e.g. 4.0">
+        </label>
+        <label class="field">
+          <span class="name">pH</span>
+          <span class="range-hint">target 7.2–7.8</span>
+          <input type="number" id="ph" step="0.1" min="6" max="9" inputmode="decimal" placeholder="e.g. 7.6">
+        </label>
+        <label class="field">
+          <span class="name">Total Alkalinity</span>
+          <span class="range-hint">target 60–90 ppm</span>
+          <input type="number" id="ta" step="1" min="0" max="300" inputmode="numeric" placeholder="e.g. 80">
+        </label>
+        <label class="field">
+          <span class="name">Cyanuric Acid (CYA)</span>
+          <span class="range-hint">target 60–80 ppm</span>
+          <input type="number" id="cya" step="1" min="0" max="200" inputmode="numeric" placeholder="e.g. 70">
+        </label>
+        <label class="field">
+          <span class="name">Calcium Hardness</span>
+          <span class="range-hint">target 200–400 ppm</span>
+          <input type="number" id="ch" step="10" min="0" max="1000" inputmode="numeric" placeholder="e.g. 300">
+        </label>
+        <label class="field">
+          <span class="name">Salt</span>
+          <span class="range-hint">target 2800–3600 ppm</span>
+          <input type="number" id="salt" step="100" min="0" max="8000" inputmode="numeric" placeholder="e.g. 3200">
+        </label>
+      </div>
+      <div class="actions">
+        <button class="primary" id="analyze">Analyze my water</button>
+        <button class="ghost" id="clear">Clear readings</button>
+        <span class="pool-tag">POOL VOLUME: 16,000 GAL</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="results" aria-live="polite"></section>
+
+  <footer>
+    Dosing is calculated for a 16,000-gallon saltwater pool with a salt chlorine generator, using industry-standard chemistry (Taylor / Trouble&nbsp;Free&nbsp;Pool methodology). Add chemicals one at a time, with the pump running, and retest after 4–6 hours of circulation. Never mix chemicals together. Check your SWG manual for its exact salt range — cells vary by brand.
+  </footer>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
