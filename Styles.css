@@ -1,0 +1,156 @@
+/* ==========================================================
+   16K Saltwater Pool Advisor — styles.css
+   ========================================================== */
+
+:root{
+  --deep:   #06303e;   /* deep-end blue */
+  --water:  #0e7c8c;   /* pool teal */
+  --shallow:#e7f4f4;   /* shallow-end wash */
+  --paper:  #f7fbfb;
+  --sun:    #f2b441;   /* caution */
+  --alert:  #c6483c;   /* action needed */
+  --ok:     #2f8f6b;   /* in range */
+  --line:   #cfe4e6;
+  --ink-2:  #4a6b73;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Public Sans',system-ui,sans-serif;
+  background:var(--paper);
+  color:var(--deep);
+  line-height:1.55;
+}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px}
+
+/* ---------- header ---------- */
+header{
+  background:linear-gradient(160deg,var(--deep) 0%,#0a4a5c 70%,var(--water) 100%);
+  color:#fff;
+  padding:56px 0 100px;
+  position:relative;
+  overflow:hidden;
+}
+header::after{ /* waterline */
+  content:"";
+  position:absolute;left:0;right:0;bottom:-2px;height:46px;
+  background:var(--paper);
+  clip-path:polygon(0 60%,4% 45%,9% 62%,14% 40%,20% 58%,26% 42%,33% 60%,40% 44%,47% 61%,54% 42%,61% 58%,68% 43%,75% 60%,82% 45%,89% 61%,95% 44%,100% 58%,100% 100%,0 100%);
+  opacity:.98;
+}
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:#9fd6dd;margin-bottom:14px;
+}
+h1{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-weight:800;font-size:clamp(30px,5vw,52px);
+  line-height:1.05;letter-spacing:-.01em;max-width:640px;
+}
+header p.sub{margin-top:16px;max-width:560px;color:#cde9ec;font-size:16px}
+
+/* ---------- form ---------- */
+section.tests{margin-top:-40px;position:relative;z-index:2}
+.card{
+  background:#fff;border:1px solid var(--line);border-radius:14px;
+  box-shadow:0 10px 30px rgba(6,48,62,.08);
+  padding:28px;
+}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+label.field{display:block}
+label.field .name{font-weight:600;font-size:14px}
+label.field .range-hint{
+  display:block;font-family:'JetBrains Mono',monospace;
+  font-size:11px;color:var(--ink-2);margin:2px 0 6px;
+}
+input[type=number]{
+  width:100%;padding:11px 12px;font-size:16px;
+  font-family:'JetBrains Mono',monospace;
+  border:1.5px solid var(--line);border-radius:9px;
+  background:var(--shallow);color:var(--deep);
+  transition:border-color .15s;
+}
+input[type=number]:focus{outline:none;border-color:var(--water);background:#fff}
+.actions{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+button.primary{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:16px;
+  background:var(--water);color:#fff;border:none;border-radius:10px;
+  padding:13px 26px;cursor:pointer;transition:background .15s,transform .1s;
+}
+button.primary:hover{background:#0a6674}
+button.primary:active{transform:translateY(1px)}
+button.ghost{
+  font-family:'Public Sans',sans-serif;font-size:14px;font-weight:500;
+  background:none;border:none;color:var(--ink-2);cursor:pointer;
+  text-decoration:underline;text-underline-offset:3px;
+}
+button:focus-visible,input:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.pool-tag{
+  margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:12px;
+  color:var(--ink-2);background:var(--shallow);
+  padding:6px 12px;border-radius:999px;border:1px solid var(--line);
+}
+
+/* ---------- results ---------- */
+#results{margin:44px 0 30px;display:none}
+.summary{
+  display:flex;align-items:center;gap:14px;margin-bottom:26px;flex-wrap:wrap;
+}
+.summary h2{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
+  font-size:clamp(22px,3.5vw,30px);
+}
+.badge{
+  font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;
+  padding:5px 12px;border-radius:999px;letter-spacing:.05em;
+}
+.badge.ok{background:#e2f3ec;color:var(--ok)}
+.badge.warn{background:#fdf1da;color:#9c6f12}
+.badge.bad{background:#fae5e2;color:var(--alert)}
+
+.param{
+  background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:22px 24px;margin-bottom:16px;
+}
+.param-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.param-head h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:18px}
+.reading{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:600}
+.reading .unit{color:var(--ink-2);font-weight:400;font-size:12px}
+
+/* the signature: a test-strip style gauge */
+.gauge{position:relative;height:14px;border-radius:999px;margin:16px 0 6px;
+  background:linear-gradient(90deg,var(--alert) 0%,var(--sun) 18%,var(--ok) 38%,var(--ok) 62%,var(--sun) 82%,var(--alert) 100%);
+  opacity:.9;
+}
+.gauge .marker{
+  position:absolute;top:-6px;width:4px;height:26px;border-radius:2px;
+  background:var(--deep);box-shadow:0 0 0 2.5px #fff;
+  transform:translateX(-50%);transition:left .5s cubic-bezier(.3,1.2,.4,1);
+}
+.gauge-labels{
+  display:flex;justify-content:space-between;
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-2);
+  margin-bottom:14px;
+}
+.verdict{font-weight:600;font-size:14px;margin-bottom:6px}
+.verdict.ok{color:var(--ok)}
+.verdict.warn{color:#9c6f12}
+.verdict.bad{color:var(--alert)}
+.dose{
+  background:var(--shallow);border-left:4px solid var(--water);
+  border-radius:0 10px 10px 0;padding:12px 16px;font-size:14.5px;
+}
+.dose strong{font-family:'JetBrains Mono',monospace;font-weight:600}
+.note{font-size:13px;color:var(--ink-2);margin-top:8px}
+
+footer{
+  margin:60px 0 40px;padding-top:24px;border-top:1px solid var(--line);
+  font-size:13px;color:var(--ink-2);
+}
+
+@media (prefers-reduced-motion:reduce){
+  .gauge .marker{transition:none}
+  html{scroll-behavior:auto}
+}
